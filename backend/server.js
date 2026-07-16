@@ -9,6 +9,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.status(200).json({ status: 'active', message: 'CodeRunner backend is running!' });
+});
+
 app.post('/execute', async (req, res) => {
     const { language, code, input } = req.body;
 
