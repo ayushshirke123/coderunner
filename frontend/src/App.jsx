@@ -63,7 +63,10 @@ function App() {
 
     try {
       // Use environment variable for backend URL, fallback to localhost for local dev
-      const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+      let API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+      if (API_URL.endsWith('/')) {
+        API_URL = API_URL.slice(0, -1);
+      }
       const response = await axios.post(`${API_URL}/execute`, {
         language,
         code,
